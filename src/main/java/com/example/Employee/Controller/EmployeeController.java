@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Employee.Model.Employee;
 import com.example.Employee.Service.EmployeeService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping({"/api/employee"})
 public class EmployeeController {
@@ -51,7 +53,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping({"/{id}"})
-     public ResponseEntity<Void> deleteEmployee(@PathVariable long id) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable long id) {
         this.employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
