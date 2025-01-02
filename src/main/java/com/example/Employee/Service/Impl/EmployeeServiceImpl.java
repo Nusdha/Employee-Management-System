@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee getEmployeeById(long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        return employee.orElse(null); 
+        return employee.orElse(null);
         // Return null or throw an exception if not found
     }
 
@@ -36,12 +36,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee updateEmployee(long id, Employee employee) {
-        if (employeeRepository.existsById(id)) {
-            employee.setId(id);
-            return employeeRepository.save(employee);
-            }
-            return null; 
-            // Return null or throw an exception if not found
+        Employee existingEmployee = getEmployeeById(id);
+        existingEmployee.setFirstName(employee.getFirstName());
+        existingEmployee.setLastName(employee.getLastName());
+        existingEmployee.setEmail(employee.getEmail());
+        return employeeRepository.save(existingEmployee);
     }
 
     @Override

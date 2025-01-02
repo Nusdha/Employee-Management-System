@@ -3,6 +3,7 @@ package com.example.Employee.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,8 +49,7 @@ public class EmployeeController {
 
     @PutMapping({"/{id}"})
     public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
-        Employee updatedEmployee = this.employeeService.updateEmployee(id, employee);
-        return updatedEmployee != null ? ResponseEntity.ok(updatedEmployee) : ResponseEntity.notFound().build();
+        return new ResponseEntity<>(employeeService.updateEmployee(id, employee), HttpStatus.OK);
     }
 
     @DeleteMapping({"/{id}"})

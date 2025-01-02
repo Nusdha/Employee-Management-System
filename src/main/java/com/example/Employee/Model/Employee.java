@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-@Document(collection = "employee") 
+@Document(collection = "employee")
 public class Employee {
         @Id
         private long id;
